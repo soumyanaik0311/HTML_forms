@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>Access Records</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="name">Name</label>
+            <select name="name" id="name">
+                {% for ao in LNO %}
+                    <option value="{{ao.name}}">{{ao.name}}</option>
+                {% endfor %}
+
+            </select>
+
+            <br>
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author"><br>
+    
+            
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date"><br>
+
+    
+            <button type="submit">Submit</button>
+        </form>
+    </center>
+</body>
+</html>
