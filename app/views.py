@@ -56,11 +56,11 @@ def select_topic(request):
     d={'LTO':LTO}
 
     if request.method=='POST':
-        topics=request.POST.getlist('topic')
-        webpages=Webpage.objects.none()
-        for tn in topics:
-            webpages=webpages|Webpage.objects.filter(topic_name=tn)
-        d1={'webpages':webpages}
+        topic=request.POST.getlist('topic')
+        webpage=Webpage.objects.none()
+        for tn in topic:
+            webpage=webpage|Webpage.objects.filter(topic_name=tn)
+        d1={'webpage':webpage}
         return render(request,'display_webpages.html',d1)
     return render(request,'select_topic.html',d)
 
