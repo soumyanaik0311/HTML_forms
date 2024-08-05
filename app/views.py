@@ -70,3 +70,34 @@ def checkbox(request):
 
     return render(request,'checkbox.html',d)
 
+
+def update_webpage(request):
+    webpage=Webpage.objects.all()
+    # Webpage.objects.filter(name='virat').update(url='https://virat.in')
+    # Webpage.objects.filter(topic_name='cricket').update(url='https://India.com')
+    # Webpage.objects.filter(name__regex='t$').update(url='https://virat.in')
+    # Webpage.objects.filter(name='rohit').update(url='https://rohit.com')
+    # Webpage.objects.filter(name='virat').update(topic_name='volleyball')
+    # Webpage.objects.filter(name='virat').update(topic_name='hockey')  #foreign key error we cannot change the data which is not present in parent table
+    # Webpage.objects.filter(name='soumya').update(url='https://virat.in') #the name soumya is not present in the webpage table so it will not perform any operation.
+
+    # Webpage.objects.update_or_create(name='Messi',defaults={'url':'https://messi.in'})
+    # Webpage.objects.update_or_create(topic_name='football',defaults={'url':'https://messi.in'}) #get method error....we cannot update more than 1 value
+    # CTO=Topic.objects.get(topic_name='football')
+    # Webpage.objects.update_or_create(name='rohit',defaults={'topic_name':CTO})
+    # Webpage.objects.update_or_create(name='virat',defaults={'topic_name':CTO})
+    # Webpage.objects.update_or_create(name='Soumya',defaults={'topic_name':CTO,'url':'https://soumya.com',})
+
+
+    d={'webpage':webpage}
+    return render(request,'display_webpages.html',d)
+
+
+
+
+def delete_webpage(request):
+    Webpage.objects.filter(name='Soumya').delete()
+    
+    webpage=Webpage.objects.all()
+    d={'webpage':webpage}
+    return render(request,'display_webpages.html',d)
